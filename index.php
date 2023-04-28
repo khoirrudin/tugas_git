@@ -12,8 +12,8 @@
 <body>
     <!-- Form Complate PHP -->
     <?php 
-        $errorNama = $errorEmail = $errorWeb = "";
-        $name = $email = $gender = $website = "";
+        $errorNama = $errorEmail  = $errorAlamat = "";
+        $name = $email = $gender = $alamat = "";
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (empty($_POST["name"])) {
                 $errorNama = "Mohon masukkan nama!";
@@ -33,16 +33,16 @@
                   $errorEmail = "Mohon masukkan email dengan benar!"; 
                   }                  
             }
-            if (empty($_POST["website"])) {
-                $errorWeb = "Mohon masukkan website!";
+            if (empty($_POST["alamat"])) {
+                $errorNama = "Mohon masukkan alamat!";
             } else {
-                $website = test_input($_POST["website"]);
-                if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$website)) { 
-                  $website = "";
-                  $errorWeb = "Mohon masukkan website dengan benar!"; 
-                 }
-                 
+                $name = test_input($_POST["alamat"]);
+                if (!preg_match("/^[a-zA-Z-' ]*$/",$alamat)) { 
+                  $alamat = "";
+                  $errorAlamat = "Mohon masukkan huruf dan spasi saja!"; 
+                  }
             }
+                 
         }
         function test_input($data)
         {
@@ -64,11 +64,12 @@
             <input type="text" name="email" value="<?= $email; ?>">
             <span class="error text-danger">* <?= $errorEmail; ?></span>
             <br><br>
-            <label for="website">Website:</label>
+            <label for="alamat">Alamat:</label>
             <!-- Penambahan Value untuk complate form -->
-            <input type="text" name="website" value="<?= $website; ?>">
-            <span class="error text-danger">* <?= $errorWeb; ?></span>
+            <input type="text" name="alamat" value="<?= $alamat; ?>">
+            <span class="error text-danger">* <?= $errorAlamat; ?></span>
             <br><br>
+            
             <button type="submit">Kirim!</button>
         </form>
         <?php
@@ -77,7 +78,7 @@
         echo "<br>";
         echo $email;
         echo "<br>";
-        echo $website;
+        echo $alamat;
         ?>
 </body>
 </html>
