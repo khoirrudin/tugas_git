@@ -1,5 +1,5 @@
 <?php
-$nama = "Khoirrudin"
+$nama = "Khoirrudin";
 $alamat = "Slogohimo"
 ?>
 <!doctype html>
